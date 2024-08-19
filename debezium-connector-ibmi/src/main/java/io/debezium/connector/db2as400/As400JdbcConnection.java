@@ -5,7 +5,10 @@
  */
 package io.debezium.connector.db2as400;
 
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.DatabaseMetaData;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.time.Instant;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -154,7 +157,7 @@ public class As400JdbcConnection extends JdbcConnection implements Connect<Conne
         }
         if (pkColumnNames.isEmpty()) {
             pkColumnNames = readTableUniqueIndices(metadata, id);
-            if (!pkColumnNames.isEmpty()){
+            if (!pkColumnNames.isEmpty()) {
                 pkColumnNames = mapSystemColumnNamesToLongNames(id, pkColumnNames);
             }
         }
